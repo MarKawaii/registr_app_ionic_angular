@@ -1,10 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-content-with-bg">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">login</ion-title>
@@ -12,9 +6,14 @@
   </ion-header>
 
   <!-- Aquí va el resto del contenido -->
-  <ion-card>
+  <div class="img-container">
+    <ion-img [src]="'assets/img/registrapp_recortada.png'" style="width: 70%; height: 70%;"></ion-img>
+  </div>
+  
+
+  <ion-card class="custom-card">
     <ion-card-header>
-      <ion-title>Login</ion-title>
+      <ion-title>Inicio de sesion</ion-title>
     </ion-card-header>
     <ion-card-content>
       <form [formGroup]="formularioLogin">
@@ -45,3 +44,9 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-footer>
