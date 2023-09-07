@@ -1,0 +1,66 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/home"
+        color="primary"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-content-with-bg">
+  <ion-card class="custom-card">
+    <ion-card-header>
+      <ion-title>Registro de Usuario</ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form>
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input type="nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Apellido</ion-label>
+          <ion-input type="Apellido"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-select label="Area" placeholder="">
+            <ion-select-option value="apple">Alumno</ion-select-option>
+            <ion-select-option value="banana">Docente</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        
+
+        <ion-button
+          [routerLink]="['/login']"
+          expand="block"
+          fill="clear"
+          shape="round"
+        >
+          Registrarse
+        </ion-button>
+      </form>
+      
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+
