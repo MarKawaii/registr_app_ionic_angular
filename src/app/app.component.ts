@@ -23,12 +23,12 @@ export class AppComponent {
     {
       name:'Informacion',
       redirecTo:'/informacion',
-      icon:'attach-outline'
+      icon:'information-outline'
     },
     {
       name:'Cerrar sesion',
       redirecTo:'/login',
-      icon:'cafe-outline'
+      icon:'exit-outline'
     },
 
   ]
