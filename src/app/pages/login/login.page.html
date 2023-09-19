@@ -8,7 +8,7 @@
   <!-- Aquí va el resto del contenido -->
   <ion-card style="width: 70%; margin: auto; margin-top: 60%; border-radius: 20px;">
     <ion-card-header>
-      <img [src]="'assets/img/registrapp_recortada.png'" style="width: 70%; height: 70%; margin-left: 30px;" />
+      <img [src]="'assets/img/registrapp_recortada.png'" style="width: 80%; height: 80%; margin-left: 30px;" />
     </ion-card-header>
   
     <ion-card-content>
@@ -32,14 +32,17 @@
           Iniciar sesion
         </ion-button>
       </form>
+
+      <ion-button class="btn-register" [routerLink]="['/registro']" expand="block" fill="clear" shape="round">
+        Crear cuenta nueva
+      </ion-button>
   
-      <ion-item class="ion-align-items-center">
-        <a [routerLink]="['/registro']">Registrarse</a>
+      <ion-item style="text-align: center;">
+        <a [routerLink]="['/#']" style="font-size: 14px; width: 100%;">Recuperar Contraseña</a>
       </ion-item>
-  
-      <ion-item class="ion-align-items-center">
-        <a [routerLink]="['/#']">Recuperar Contraseña</a>
-      </ion-item>
+      
+      
+    
     </ion-card-content>
   </ion-card>
   

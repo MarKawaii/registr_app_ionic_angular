@@ -1,66 +1,58 @@
-<ion-header [translucent]="true" >
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button
-        defaultHref="/home"
-        color="primary"
-      ></ion-back-button>
+      <ion-back-button defaultHref="/home" color="primary"></ion-back-button>
     </ion-buttons>
+    <ion-title>Crear cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-content-with-bg">
-  <ion-card class="custom-card">
+  <ion-card
+    style="width: 70%; margin: auto; margin-top: 40%; border-radius: 20px">
     <ion-card-header>
-      <ion-title>Registro de Usuario</ion-title>
+      <ion-title style="text-align: center;">Registrarte</ion-title>
     </ion-card-header>
+    
     <ion-card-content>
-      <form>
+      <form action="" style="border-radius: 5px">
         <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input type="nombre"></ion-input>
+          <ion-label position="floating">Nomnbre</ion-label>
+          <ion-input type="text" placeholder="nombre"></ion-input>
         </ion-item>
+
         <ion-item>
           <ion-label position="floating">Apellido</ion-label>
-          <ion-input type="Apellido"></ion-input>
+          <ion-input type="text" placeholder="apellido"></ion-input>
         </ion-item>
+
         <ion-item>
-          <ion-label position="floating">Correo</ion-label>
-          <ion-input type="email"></ion-input>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="text" placeholder="email"></ion-input>
         </ion-item>
+
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-select label="Area" placeholder="">
-            <ion-select-option value="apple">Alumno</ion-select-option>
-            <ion-select-option value="banana">Docente</ion-select-option>
-          </ion-select>
+          <ion-input type="text" placeholder="email"></ion-input>
         </ion-item>
 
+        <!-- <ion-item>
+          <ion-label>Alumno</ion-label>
+          <ion-checkbox slot="start" [(ngModel)]="isAlumno" (ionChange)="updateCheckboxStatus('alumno')"></ion-checkbox>
+        </ion-item>
         
+        <ion-item>
+          <ion-label>Docente</ion-label>
+          <ion-checkbox slot="start" [(ngModel)]="isDocente" (ionChange)="updateCheckboxStatus('docente')"></ion-checkbox>
+        </ion-item> -->
+  
 
-        <ion-button
-          [routerLink]="['/login']"
-          expand="block"
-          fill="clear"
-          shape="round"
-        >
-          Registrarse
+        <ion-button class="btn-register" [routerLink]="['/registro']" expand="block" fill="clear" shape="round">
+          Crear cuenta nueva
         </ion-button>
+
+
       </form>
-      
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-title></ion-title>
-  </ion-toolbar>
-</ion-footer>
-
-
-
-
