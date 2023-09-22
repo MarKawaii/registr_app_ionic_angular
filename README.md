@@ -24,9 +24,15 @@
 ## Ayudas
 ## Esto debe ser movido a conflience mas adelante
 
-
 * Levantar el servidor local ```ionic serve```
 * Como crear una nueva pagina ```ionic generate page pages/informacion```
 * Como crear un nuevo componente ```ionic generate component componente/menu```
+
+
+## Crear APK
+* ```ionic build```
+* ```npx cap add android```
+* ```npx cap open android```
+
 
 

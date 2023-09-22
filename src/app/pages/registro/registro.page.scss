@@ -1,31 +1,42 @@
 .ion-content-with-bg {
-    --background: none;
-    background: url('/assets/img/duoc_entrada.jpg') no-repeat center center / cover;
-  }
+  --background: none;
+  background: url("/assets/img/duoc_entrada.jpg") no-repeat center center /
+    cover;
+}
 
-  .custom-card {
-    position: relative;
-  }
-  
-  .custom-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.7;
-    z-index: -1;
-    opacity: 10%;
-  }
+.custom-card {
+  position: relative;
+}
 
+.custom-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.7;
+  z-index: -1;
+  opacity: 10%;
+}
 
-  .btn-register {
-    background-color: yellow;
-    color: black;
-    border-radius: 15px;
-    padding-top: 5px;
-  }
+.btn-register {
+  background-color: yellow;
+  color: black;
+  border-radius: 15px;
+  padding-top: 5px;
+}
 
-  
-  
+ion-alert .alert-button {
+  --border-radius: 5px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
