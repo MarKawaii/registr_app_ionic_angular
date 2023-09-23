@@ -16,27 +16,41 @@
     <ion-card-content>
       <!-- Vinculación del formulario con el FormGroup del componente -->
       <form [formGroup]="formularioRegistro">
-        <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input type="text" placeholder="nombre" formcontrolname="firsName"></ion-input>
+        <ion-list>
+          <ion-item>
+            <ion-input labelPlacement="floating" placeholder="nombre" formControlName="firsName" type="text">
+              <div slot="label">Nombre <ion-text color="danger">*</ion-text></div>
+            </ion-input>
+          </ion-item>
+        </ion-list>
 
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="floating">Apellido</ion-label>
-          <ion-input type="text" placeholder="apellido" formControlName="lastName"></ion-input>
-        </ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-input labelPlacement="floating" placeholder="apellido" formControlName="lastName" type="text">
+              <div slot="label">Apellido <ion-text color="danger">*</ion-text></div>
+            </ion-input>
+          </ion-item>
+        </ion-list>
 
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input type="text" placeholder="email" formControlName="email"></ion-input>
-        </ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-input labelPlacement="floating" placeholder="alumno@duocuc.cl" formControlName="email" type="text">
+              <div slot="label">Correo <ion-text color="danger">*</ion-text></div>
+            </ion-input>
+          </ion-item>
+        </ion-list>
 
-        <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
-          <!-- Cambiado el placeholder de "email" a "contraseña" -->
-          <ion-input type="password" placeholder="contraseña" formControlName="password"></ion-input>
-        </ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-input labelPlacement="floating" placeholder="contraseña" formControlName="password" 
+              [type]="mostrarContrasena ? 'text' : 'password'">
+              <div slot="label">Contraseña <ion-text color="danger">*</ion-text></div>
+            </ion-input>
+            <ion-button slot="end" fill="clear" (click)="toggleContrasena()">
+              <ion-icon slot="icon-only" name="{{ mostrarContrasena ? 'eye-off' : 'eye' }}"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
 
         <!-- Vinculación del botón con la función de validación -->
         <ion-button class="btn-register" (click)="crearCuenta()" expand="block" fill="clear" shape="round">
