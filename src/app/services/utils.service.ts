@@ -12,4 +12,5 @@ export class UtilsService {
   async loading() {
     return await this.loadingCtrl.create({spinner: 'crescent'});
   } 
+  
 }

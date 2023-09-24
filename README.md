@@ -37,3 +37,4 @@
 
 
 npm install @angular/fire firebase --save
+npm install @capacitor/android
