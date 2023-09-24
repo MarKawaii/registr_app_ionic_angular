@@ -36,3 +36,4 @@
 
 
 
+npm install @angular/fire firebase --save
