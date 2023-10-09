@@ -54,7 +54,7 @@ export class LoginPage implements OnInit {
         loading = await this.utilsSvc.loading();
         await loading.present();
   
-        const res = await this.firebaseSvc.singIn(this.formularioLogin.value as User);
+        const res = await this.firebaseSvc.signIn(this.formularioLogin.value as User);
         console.log(res);
   
         await loading.dismiss();

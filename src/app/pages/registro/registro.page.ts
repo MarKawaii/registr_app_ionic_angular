@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FirebaseService } from 'src/app/services/firebase.service';  // Importa FirebaseService
 
 @Component({
   selector: 'app-registro',
@@ -20,10 +21,11 @@ export class RegistroPage implements OnInit {
   constructor(
     private router: Router,
     public fb: FormBuilder,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private firebaseSvc: FirebaseService  // Inyecta FirebaseService
   ) {
     this.formularioRegistro = this.fb.group({
-      firsName: new FormControl('', [
+      firstName: new FormControl('', [  // Corregido el nombre del campo a 'firstName'
         Validators.required,
         Validators.minLength(3),
       ]),
@@ -45,22 +47,31 @@ export class RegistroPage implements OnInit {
     this.mostrarContrasena = !this.mostrarContrasena;
   }
 
-  // SI EL FORMULARIO ESTA COMPLETO SE INTENTA CREAR EL USUARIO CON LA INFORMACION INGRESADA
   async crearCuenta() {
-    console.log('Formulario válido:', this.formularioRegistro.valid); // Añade esto
-
     if (this.formularioRegistro.valid) {
-      this.router.navigate(['/home']);
+      try {
+        const userValue = {
+          ...this.formularioRegistro.value,
+          email: this.formularioRegistro.value.email,
+          password: this.formularioRegistro.value.password,
+        };
+        const res = await this.firebaseSvc.signUp(userValue);
+        console.log('Usuario creado:', res);
+        this.router.navigate(['/home']);
+      } catch (err) {
+        console.error('Error al crear usuario:', err);
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'Error al crear la cuenta. Por favor, intenta nuevamente.',
+          buttons: [{ text: 'OK', cssClass: 'primary' }],
+        });
+        await alert.present();
+      }
     } else {
       const alert = await this.alertController.create({
         header: 'Alerta',
-        message: 'Por favor, llena todos los campos corectamente',
-        buttons: [
-          {
-            text: 'OK',
-            cssClass: 'primary',
-          },
-        ],
+        message: 'Por favor, llena todos los campos correctamente',
+        buttons: [{ text: 'OK', cssClass: 'primary' }],
       });
       await alert.present();
     }
