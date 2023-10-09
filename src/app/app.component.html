@@ -7,12 +7,18 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-       <ion-menu-toggle *ngFor="let c of componentes">
+      <ion-menu-toggle *ngFor="let c of componentes">
         <ion-item [routerLink]="c.redirecTo" detail="true">
           <ion-icon slot="start" [name]="c.icon" color="success"></ion-icon>
           {{ c.name }}
         </ion-item>
-       </ion-menu-toggle>
+      </ion-menu-toggle>
+      <!-- Botón de cerrar sesión -->
+      <ion-item (click)="logout()" detail="true">
+        <ion-icon slot="start" name="exit-outline" color="success"></ion-icon>
+        Cerrar sesión
+      </ion-item>
+      
     </ion-content>
   </ion-menu>
   

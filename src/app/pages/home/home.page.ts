@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
-
 import { MenuController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
+import { FirebaseService } from 'src/app/services/firebase.service';  // Importa FirebaseService
+import { RolesService } from 'src/app/services/roles.service';  // Importa RolesService
 import { Feriados } from '../interfaces/interfaces';
+import { Role } from '../../models/role.model';
+
 
 @Component({
   selector: 'app-home',
@@ -11,20 +14,32 @@ import { Feriados } from '../interfaces/interfaces';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  // Añadir OnDestroy
   feriados: Feriados[] = [];
   filterActive: boolean = true;
   loading: boolean = true;
   currentTime: string = new Date().toISOString();
+  userName: string;  // Variable para almacenar el nombre del usuario
+  userRole: string;  // Variable para almacenar el nombre del rol
 
   constructor(
     private menuController: MenuController,
     private apiService: ApiService,
-    private cdRef: ChangeDetectorRef // Añadir esto
+    private cdRef: ChangeDetectorRef,
+    private firebaseService: FirebaseService,  // Inyecta FirebaseService
+    private rolesService: RolesService  // Inyecta RolesService
   ) {}
 
   ngOnInit() {
     this.cargarFeriados();
+    this.loadUserInfo();  // Carga la información del usuario y el rol
+  }
+
+  loadUserInfo() {
+    this.firebaseService.user.subscribe(user => {
+      if (user) {
+        this.userName = user.name;      
+      }
+    });
   }
 
   cargarFeriados() {
