@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from '../models/user.model'; // Asegúrate de que esta ruta es correcta
+import { User } from '../models/user.model';  // Asegúrate de que esta ruta es correcta
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore'; // Importa AngularFirestore
+import { AngularFirestore } from '@angular/fire/compat/firestore';  // Importa AngularFirestore
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class FirebaseService {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private afs: AngularFirestore // Inyecta AngularFirestore
+    private afs: AngularFirestore  // Inyecta AngularFirestore
   ) {
     this.user = this.afAuth.authState.pipe(
       map((firebaseUser) => {
@@ -23,9 +23,9 @@ export class FirebaseService {
             uid: firebaseUser.uid,
             email: firebaseUser.email || '',
             name: firebaseUser.displayName || '',
-            password: '', // Las contraseñas no son accesibles desde el estado de autenticación
-            status: false, // Estado por defecto
-            roleId: 1, // Rol por defecto (alumno)
+            password: '',  // Las contraseñas no son accesibles desde el estado de autenticación
+            status: false,  // Estado por defecto
+            roleId: 1,  // Rol por defecto (alumno)
           };
         } else {
           return null;
@@ -45,10 +45,10 @@ export class FirebaseService {
         const newUser = {
           uid: credential.user.uid,
           email: user.email,
-          name: `${user.firstName} ${user.lastName}`, // Asume que User tiene firstName y lastName
-          password: '', // Las contraseñas no son accesibles desde el estado de autenticación
-          status: false, // Estado por defecto
-          roleId: 1, // Rol por defecto (alumno)
+          name: `${user.firstName} ${user.lastName}`,  // Asume que User tiene firstName y lastName
+          password: '',  // Las contraseñas no son accesibles desde el estado de autenticación
+          status: false,  // Estado por defecto
+          roleId: 1,  // Rol por defecto (alumno)
         };
         // Actualiza el nombre de usuario en el perfil de Firebase
         return credential.user
@@ -60,7 +60,7 @@ export class FirebaseService {
       })
       .catch((error) => {
         console.error('Error durante el registro:', error);
-        throw error; // Re-lanza el error para que pueda ser manejado en el componente
+        throw error;  // Re-lanza el error para que pueda ser manejado en el componente
       });
   }
 
@@ -71,5 +71,15 @@ export class FirebaseService {
   // Método para almacenar datos del usuario en Firestore
   storeUserData(user: User) {
     return this.afs.collection('users').doc(user.uid).set(user);
+  }
+
+  // Método para obtener todos los usuarios
+  getUsers(): Observable<User[]> {
+    return this.afs.collection<User>('users').valueChanges();
+  }
+
+  // Método para actualizar el estado del usuario
+  updateUserStatus(user: User): Promise<void> {
+    return this.afs.collection('users').doc(user.uid).update({ status: user.status });
   }
 }

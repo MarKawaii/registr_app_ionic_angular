@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title> Gestión de Usuarios</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>Nombre</ion-col>
+      <ion-col>Email</ion-col>
+      <ion-col>Acciones</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let user of users">
+      <ion-col>{{ user.name }}</ion-col>
+      <ion-col>{{ user.email }}</ion-col>
+      <ion-col>
+        <ion-toggle [(ngModel)]="user.status" (ionChange)="toggleUserStatus(user)" color="tertiary"></ion-toggle>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

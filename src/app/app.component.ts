@@ -26,6 +26,12 @@ export class AppComponent {
       redirecTo: '/informacion',
       icon: 'information-outline',
     },
+    {
+      name: 'Gestión de Usuarios',
+      redirecTo: '/user-management',
+      icon: 'people-outline',  // Elige un icono apropiado para esta entrada
+    },
+    
     // ... otros componentes ...
   ];
 
