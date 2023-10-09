@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule),
+  },
+  {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canActivate: [AuthGuard]  // Aplicar AuthGuard
@@ -22,11 +26,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/informacion/informacion.module').then( m => m.InformacionPageModule),
     canActivate: [AuthGuard]  // Aplicar AuthGuard
   },
-  {
-    path: 'registro',
-    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule),
-    canActivate: [AuthGuard]  // Aplicar AuthGuard
-  },
+  
 ];
 
 @NgModule({
