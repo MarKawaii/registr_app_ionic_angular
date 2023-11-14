@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Asignaturas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Formulario para agregar/editar asignaturas -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ asignatura.id ? 'Editar Asignatura' : 'Agregar Asignatura' }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="createOrUpdateAsignatura()">
+        <ion-item>
+          <ion-label position="floating">Nombre de la asignatura</ion-label>
+          <ion-input [(ngModel)]="asignatura.nombre" name="nombre" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Horario</ion-label>
+          <ion-input [(ngModel)]="asignatura.horario" name="horario" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Docente</ion-label>
+          <ion-select [(ngModel)]="asignatura.docenteId" name="docenteId" required>
+            <ion-select-option *ngFor="let docente of docentes" [value]="docente.uid">
+              {{ docente.name }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button type="submit" expand="block" color="primary">
+          {{ asignatura.id ? 'Actualizar' : 'Agregar' }}
+        </ion-button>
+        <ion-button *ngIf="asignatura.id" expand="block" color="light" (click)="resetForm()">
+          Cancelar
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Lista de asignaturas -->
+  <ion-list>
+    <ion-item *ngFor="let item of asignaturas">
+      <ion-label>
+        <h2>{{ item.nombre }}</h2>
+        <p>Horario: {{ item.horario }}</p>
+        <p>Docente: {{ item.docenteNombre }} ({{ item.docenteEmail }})</p>
+      </ion-label>
+      <ion-button fill="outline" slot="end" (click)="prepareEdit(item)">
+        Editar
+      </ion-button>
+      <ion-button fill="outline" color="danger" slot="end" (click)="deleteAsignatura(item.id)">
+        Eliminar
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

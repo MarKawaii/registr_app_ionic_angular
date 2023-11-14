@@ -31,6 +31,11 @@ export class AppComponent {
       redirecTo: '/user-management',
       icon: 'people-outline',  // Elige un icono apropiado para esta entrada
     },
+    {
+      name: 'Crear Asignatura',
+      redirecTo: '/asignatura',
+      icon: 'create-outline',  // Elige un icono apropiado para esta entrada
+    },
     
     // ... otros componentes ...
   ];

@@ -29,7 +29,11 @@ const routes: Routes = [
   {
     path: 'user-management',
     loadChildren: () => import('./pages/user-management/user-management.module').then( m => m.UserManagementPageModule)
+  },  {
+    path: 'asignatura',
+    loadChildren: () => import('./pages/asignatura/asignatura.module').then( m => m.AsignaturaPageModule)
   },
+
 
   
 ];
