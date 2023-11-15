@@ -24,7 +24,7 @@ interface AsignaturaConDocente extends Asignatura {
 export class AsignaturaPage implements OnInit {
   asignaturas: AsignaturaConDocente[] = [];
   docentes: Docente[] = [];
-  asignatura: AsignaturaConDocente = this.getEmptyAsignatura(); // Objeto para el formulario
+  asignatura: AsignaturaConDocente = this.getEmptyAsignatura();
 
   constructor(
     private asignaturaService: AsignaturaService,
@@ -37,7 +37,7 @@ export class AsignaturaPage implements OnInit {
   }
 
   loadAsignaturas() {
-    this.firestore.collection<Asignatura>('asignaturas').valueChanges({ idField: 'id' })
+    this.asignaturaService.getAsignaturas()
       .pipe(
         switchMap(asignaturas => {
           if (asignaturas.length === 0) {

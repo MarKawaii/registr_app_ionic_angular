@@ -1,5 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs';
 import QRCode from 'qrcode';
+import { Asignatura } from '../../models/asignatura'; // Update the path as per your project structure
+import { AsignaturasListService } from '../../services/asignaturas-list.service'; // Update the path as per your project structure
 
 @Component({
   selector: 'app-ver-asignaturas',
@@ -7,16 +10,17 @@ import QRCode from 'qrcode';
   styleUrls: ['./ver-asignaturas.page.scss'],
 })
 export class VerAsignaturasPage implements OnInit, OnDestroy {
-  qrData = 'Información inicial del QR';
-  generatedQRCode = '';
-  asignaturas: string[] = ['Asignatura 1', 'Asignatura 2', 'Asignatura 3'];
+  asignaturas$: Observable<Asignatura[]>;
+  generatedQRCode: string = '';
   showQR: boolean = false;
   qrTimer: any;
-  countdown: number = 120; // 2 minutos en segundos
+  countdown: number = 120;
+  qrData: string = '';
 
-  constructor() { }
+  constructor(private asignaturasListService: AsignaturasListService) {}
 
   ngOnInit() {
+    this.asignaturas$ = this.asignaturasListService.getAllAsignaturas();
   }
 
   ngOnDestroy() {
@@ -25,8 +29,8 @@ export class VerAsignaturasPage implements OnInit, OnDestroy {
     }
   }
 
-  onAsignaturaClick(asignatura: string) {
-    this.qrData = `Información de la asignatura: ${asignatura}`;
+  onAsignaturaClick(asignatura: Asignatura) {
+    this.qrData = `Información de la asignatura: ${JSON.stringify(asignatura)}`;
     this.generateQRCode();
   }
 
@@ -38,12 +42,12 @@ export class VerAsignaturasPage implements OnInit, OnDestroy {
         this.startQRTimer();
       })
       .catch(err => {
-        console.error(err);
+        console.error('Error al generar el código QR:', err);
       });
   }
 
   startQRTimer() {
-    this.countdown = 120; // Reiniciar el contador
+    this.countdown = 120;
     if (this.qrTimer) {
       clearInterval(this.qrTimer);
     }
@@ -51,10 +55,10 @@ export class VerAsignaturasPage implements OnInit, OnDestroy {
       if (this.countdown > 0) {
         this.countdown--;
       } else {
-        this.generateQRCode(); // Generar un nuevo QR después de 2 minutos
-        this.countdown = 120; // Reiniciar el contador
+        this.generateQRCode();
+        this.countdown = 120;
       }
-    }, 1000); // Actualizar cada segundo
+    }, 1000);
   }
 
   closeQR() {
