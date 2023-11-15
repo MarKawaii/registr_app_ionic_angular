@@ -8,8 +8,8 @@ import { Asignatura } from '../models/asignatura';
 export class AsignaturaService {
   constructor(private firestore: AngularFirestore) {}
 
-  getAsignaturas() {
-    return this.firestore.collection('asignaturas').snapshotChanges();
+  getAsignatura(id: string) {
+    return this.firestore.doc(`asignaturas/${id}`).valueChanges();
   }
 
   createAsignatura(asignatura: Asignatura) {
@@ -23,5 +23,6 @@ export class AsignaturaService {
   deleteAsignatura(asignaturaId: string) {
     return this.firestore.doc(`asignaturas/${asignaturaId}`).delete();
   }
+  
   
 }

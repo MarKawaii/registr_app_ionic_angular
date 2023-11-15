@@ -5,5 +5,6 @@ export interface Asignatura {
     docenteId: string;
     docenteNombre?: string;
     docenteEmail?: string;
+    alumnos?: string[];
   }
   

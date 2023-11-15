@@ -36,6 +36,11 @@ export class AppComponent {
       redirecTo: '/asignatura',
       icon: 'create-outline',  // Elige un icono apropiado para esta entrada
     },
+    {
+      name: 'Ver Asignaturas',
+      redirecTo: '/ver-asignaturas',
+      icon: 'time-outline',  // Elige un icono apropiado para esta entrada
+    },
     
     // ... otros componentes ...
   ];

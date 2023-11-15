@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ver Asignaturas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Ver Asignaturas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Lista de asignaturas -->
+  <ion-list *ngIf="!showQR">
+    <ion-item *ngFor="let asignatura of asignaturas" (click)="onAsignaturaClick(asignatura)">
+      {{ asignatura }}
+    </ion-item>
+  </ion-list>
+
+  <!-- Modal del código QR generado -->
+  <div class="qr-modal" *ngIf="showQR">
+    <ion-card class="ion-margin">
+      <ion-card-header>
+        <ion-card-title>QR de la Asignatura</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="ion-text-center">
+        <img [src]="generatedQRCode" alt="Código QR" class="qr-image">
+        <p>Tiempo restante para nuevo QR: {{ countdown }} segundos</p>
+        <!-- Botón para cerrar el QR -->
+        <ion-button (click)="closeQR()" class="close-button">Cerrar</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+</ion-content>
